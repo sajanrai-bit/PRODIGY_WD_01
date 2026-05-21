@@ -1,11 +1,24 @@
-Interactive Sticky Navigation Bar
-A sleek, modern, and production-ready navigation bar designed to sit fixed at the top of a webpage. It starts transparent to blend beautifully into hero images, and dynamically transitions into a compact, solid-colored bar with a subtle drop shadow as the user scrolls down.
+# 🌑 NothingSystems - Interactive Sticky Navigation
 
-🚀 Features
-Fixed Position: Stays pinned to the top of the viewport on all pages.
+A sleek, minimalist landing page featuring a high-performance **interactive sticky navigation bar**. Inspired by "Nothing" design aesthetics, this project showcases seamless transitions between a transparent hero state and a focused, functional scrolled state.
 
-Dynamic Scroll Behavior: Automatically updates its padding, background color, text color, and shadow using an optimized JavaScript scroll listener.
+## 📱 Live Features
 
-Modern Hover Effects: Includes smooth text color transitions and an elegant, animated underline effect on menu items.
+* **Dynamic Scroll Logic:** The navigation bar intelligently detects vertical scroll position to toggle between a transparent "Hero" mode and a solid, elevated "Active" mode.
+* **Smooth Navigation:** Utilizes native CSS `scroll-behavior` for elegant, fluid transitions when jumping between site sections.
+* **Hover Interactivity:** Modern link underlining and card-lifting effects ($5\text{px}$ translateY) provide immediate tactile feedback.
+* **Responsive Grid:** A flexible services layout that automatically adapts to varying screen widths using CSS Grid.
 
-Responsive & Clean: Written in semantic HTML5, clean vanilla CSS (no external libraries required), and lightweight JavaScript.
+## 🛠️ Technical Stack
+
+* **HTML5:** Semantic structure for optimal SEO and accessibility.
+* **CSS3:** Custom layouts using **Flexbox** and **CSS Grid**, plus custom transitions for the navigation lifecycle.
+* **Vanilla JavaScript:** Lightweight event listeners to manage scroll-state classes without the need for heavy libraries.
+
+## 🏗️ Project Structure
+
+The project follows a modular, single-file architecture for ease of deployment:
+
+```text
+├── nav.html           # Core HTML structure, CSS styles, and JS logic
+└── README.md          # Documentation
