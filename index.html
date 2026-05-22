@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Interactive Sticky Navigation</title>
+  <style>
+    /* Reset and Core Styles */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+
+    body {
+      background-color: #f4f6f9;
+      color: #333;
+      line-height: 1.6;
+    }
+
+    /* --- NAVIGATION STYLES --- */
+    .navbar {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      z-index: 1000;
+      
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      
+      /* Initial State (Top of page) */
+      padding: 25px 50px;
+      background-color: transparent; 
+      color: #ffffff;
+      box-shadow: 0 4px 0px rgba(0,0,0,0);
+      
+      /* Smoothly animate all style changes */
+      transition: padding 0.3s ease-in-out, background-color 0.3s ease-in-out, color 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+    }
+
+    /* Scrolled State (Triggered via JavaScript IntersectionObserver) */
+    .navbar.scrolled {
+      padding: 15px 50px;
+      background-color: #ffffff;
+      color: #1a1a1a;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+    }
+
+    /* Brand/Logo styling */
+    .nav-logo {
+      font-size: 1.5rem;
+      font-weight: 700;
+      letter-spacing: 1px;
+      cursor: pointer;
+    }
+
+    /* Menu Links Container */
+    .nav-menu {
+      display: flex;
+      list-style: none;
+      gap: 30px;
+    }
+
+    /* Individual Menu Links */
+    .nav-link {
+      text-decoration: none;
+      font-weight: 500;
+      font-size: 1rem;
+      color: inherit; 
+      position: relative;
+      padding: 5px 0;
+      transition: color 0.3s ease;
+    }
+
+    /* Hover State: Font Color Shift */
+    .nav-link:hover {
+      color: #3b82f6; 
+    }
+
+    /* Hover State: Animated Underline Effect */
+    .nav-link::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 0;
+      height: 2px;
+      background-color: #3b82f6;
+      transition: width 0.3s ease;
+    }
+
+    .nav-link:hover::after {
+      width: 100%;
+    }
+
+    /* --- PLACEHOLDER CONTENT TO ALLOW SCROLLING --- */
+    .hero-section {
+      height: 100vh;
+      background: linear-gradient(135deg, #1e3a8a 0%, #3b82f6 100%);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      color: white;
+      padding: 20px;
+    }
+
+    .hero-content h1 {
+      font-size: 3.5rem;
+      margin-bottom: 20px;
+    }
+
+    .content-section {
+      padding: 100px 50px;
+      max-width: 800px;
+      margin: 0 auto;
+    }
+
+    .content-section h2 {
+      margin-bottom: 20px;
+      color: #1e3a8a;
+    }
+
+    .content-section p {
+      margin-bottom: 30px;
+      font-size: 1.1rem;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Navigation Bar -->
+  <nav class="navbar" id="mainNavbar">
+    <div class="nav-logo">NothingSystems</div>
+    <ul class="nav-menu">
+      <li><a href="#" class="nav-link">Home</a></li>
+      <li><a href="#" class="nav-link">About</a></li>
+      <li><a href="#" class="nav-link">Services</a></li>
+      <li><a href="#" class="nav-link">Contact</a></li>
+    </ul>
+  </nav>
+
+  <!-- Navigation Scroll Anchor Trigger -->
+  <div id="scrollAnchor" style="position: absolute; top: 50px; left: 0; height: 1px; width: 100%;"></div>
+
+  <!-- Dummy Content Sections -->
+  <header class="hero-section">
+    <div class="hero-content">
+      <h1>Welcome to Our Site</h1>
+      <p>Scroll down to see the navigation bar update its style dynamically.</p>
+    </div>
+  </header>
+
+  <main>
+    <section class="content-section">
+      <h2>Our Vision</h2>
+      <p>NothingSystems builds technology that gets out of your way. Our vision is a digital ecosystem so seamless, intentional, and invisible that you forget the interface entirely—leaving only the human experience. We stripped away the noise, the clutter, and the manipulative design loops to create technology that serves you, not the other way around. In a world drowning in digital distractions, our ultimate goal is elegant utility: Everything you need, nothing you don't.</p>
+      
+      <h2>What We Do</h2>
+      <p>We design and build an open ecosystem of consumer electronics that strips away the barrier between people and technology. Rather than hiding the engineering inside generic plastic boxes, we celebrate it. We create hard-working, beautifully designed tech essentials that keep you present in the real world rather than locked to a glass screen.</p>
+    </section>
+  </main>
+
+  <!-- Optimized JavaScript Interactivity -->
+  <script>
+    const navbar = document.getElementById('mainNavbar');
+    const anchor = document.getElementById('scrollAnchor');
+
+    // Modern performance-optimized way to detect page scroll thresholds
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        // If our hidden top anchor element goes off-screen, add the scrolled style
+        if (!entry.isIntersecting) {
+          navbar.classList.add('scrolled');
+        } else {
+          navbar.classList.remove('scrolled');
+        }
+      });
+    }, { rootMargin: "0px 0px 0px 0px" });
+
+    observer.observe(anchor);
+  </script>
+
+</body>
+</html>
